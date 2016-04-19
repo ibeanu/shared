@@ -69,7 +69,7 @@ public class PrimeCalculatorService implements PrimeCalculator {
      * @throws InterruptedException
      */
     @Override
-    public Future<?> getPrimeFuture(Integer limit)
+    public Future<?> getPrimeFuture(int limit)
             throws ExecutionException, InterruptedException {
         //TODO: Break up number if > than 100 and process individual sublist with paralell threads
         return Executors.newSingleThreadExecutor()

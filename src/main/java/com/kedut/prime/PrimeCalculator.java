@@ -14,5 +14,5 @@ import java.util.concurrent.Future;
 public interface PrimeCalculator {
     List<Integer> retrievePrimeNumbers(int limit);
     boolean isPrime(int number);
-    Future<?> getPrimeFuture(Integer limit) throws ExecutionException, InterruptedException;
+    Future<?> getPrimeFuture(int limit) throws ExecutionException, InterruptedException;
 }
