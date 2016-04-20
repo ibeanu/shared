@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Primes Numbers within <p th:text="${limit}"/></h1>
+<h4 th:text="${errorMsg}"/>
 <tr th:each="prime: ${primes}">
     <td th:text="${prime}"></td>
 </tr>

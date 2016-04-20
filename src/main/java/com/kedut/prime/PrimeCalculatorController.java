@@ -21,12 +21,17 @@ public class PrimeCalculatorController {
                                  Integer limit, Model model)
             throws ExecutionException, InterruptedException {
 
-        Future<?> primeFuture = calculator.getPrimeFuture(limit);
-
-        while (!primeFuture.isDone()) {
+        if (limit <= 10000 ) {
+            Future<?> primeFuture = calculator.getPrimeFuture(limit);
+            while (!primeFuture.isDone()) {
+            }
+            model.addAttribute("limit", limit);
+            model.addAttribute("primes", primeFuture.get());
+            model.addAttribute("errorMsg", "");
+        } else {
+            model.addAttribute("limit", limit);
+            model.addAttribute("errorMsg", "Limit is too high");
         }
-        model.addAttribute("limit", limit);
-        model.addAttribute("primes", primeFuture.get());
         return "prime";
     }
 }

@@ -39,6 +39,7 @@ public class PrimeCalculatorService implements PrimeCalculator {
     private List<Integer> calculateNewPrime(int limit) {
         List<Integer> primes = IntStream
                 .range(2, limit + 1)
+                .parallel()
                 .boxed()
                 .filter(this::isPrime)
                 .collect(Collectors.toList());
@@ -56,6 +57,7 @@ public class PrimeCalculatorService implements PrimeCalculator {
     public boolean isPrime(int number) {
         assert number > 1;
         return IntStream.range(2, number + 1)
+                .parallel()
                 .filter(i -> number % i == 0)
                 .count() < 2;
     }
@@ -71,7 +73,6 @@ public class PrimeCalculatorService implements PrimeCalculator {
     @Override
     public Future<?> getPrimeFuture(int limit)
             throws ExecutionException, InterruptedException {
-        //TODO: Break up number if > than 100 and process individual sublist with paralell threads
         return Executors.newSingleThreadExecutor()
                 .submit(() -> retrievePrimeNumbers(limit));
     }
